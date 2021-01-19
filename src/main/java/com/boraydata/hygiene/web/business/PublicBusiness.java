@@ -1,6 +1,7 @@
 package com.boraydata.hygiene.web.business;
 
 import com.boraydata.hygiene.biz.PublicService;
+import com.boraydata.hygiene.biz.impl.PublicServiceImpl;
 import com.boraydata.hygiene.dal.entity.PublicEntity;
 import com.boraydata.hygiene.web.request.PublicRequest;
 import com.boraydata.hygiene.web.response.ConsultationResponse;

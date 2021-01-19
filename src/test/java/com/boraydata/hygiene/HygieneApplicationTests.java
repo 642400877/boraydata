@@ -8,6 +8,7 @@ class HygieneApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }
