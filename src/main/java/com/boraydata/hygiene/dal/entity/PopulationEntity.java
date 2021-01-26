@@ -1,45 +1,53 @@
 package com.boraydata.hygiene.dal.entity;
 
+import com.boraydata.hygiene.common.annotation.RandomAnnotation;
 import lombok.Data;
-
-import java.util.Date;
-
 @Data
 public class PopulationEntity {
 
     /**
      * 出生率
      */
-    private String birthRate;
+    @RandomAnnotation(max = 1000, needFloat = true, floatNumber = 2)
+    private Double birthRate;
 
     /**
      * 出生人数
      */
-    private Long birthNumber;
+    @RandomAnnotation(max = 1000)
+    private Double birthNumber;
 
     /**
      * 死亡率
      */
-    private  String mortality;
+    @RandomAnnotation(max = 1000, needFloat = true, floatNumber = 2)
+    private  Double mortality;
 
     /**
      * 死亡人数
      */
-    private  Long mortalityNumber;
+    @RandomAnnotation(max = 1000)
+    private  Double mortalityNumber;
 
     /**
      * 人口迁移指数
      */
-    private  String migrationIndex;
+    @RandomAnnotation(max = 1000, needFloat = true, floatNumber = 2)
+    private  Double migrationIndex;
 
     /**
      * 人口稠密度
      */
-    private  String populationDensity;
+    @RandomAnnotation(max = 1000, needFloat = true, floatNumber = 2)
+    private  Double populationDensity;
 
     /**
      * 数据日期
      */
     private  Integer dataTime;
 
+    /**
+     * 地点
+     */
+    private String placeName;
 }

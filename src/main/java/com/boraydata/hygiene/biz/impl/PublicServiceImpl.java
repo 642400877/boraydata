@@ -15,10 +15,11 @@ public class PublicServiceImpl implements PublicService {
 
     @Autowired
     PublicMapper publicMapper;
-    
+
     public List<PublicEntity> listPublicInfo(PublicRequest publicRequest) {
         List<PublicEntity> publicEntityList = publicMapper.listPublicInfo();
         return CollectionUtil.sublistLoop(publicEntityList, publicRequest.getIndex(), publicRequest.getSize());
     }
 
 }
+

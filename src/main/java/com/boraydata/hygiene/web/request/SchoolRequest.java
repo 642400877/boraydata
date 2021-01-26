@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class SchoolRequest {
 
-
     /**
      * 请求的长度 不要超过数据库的总数据
      */

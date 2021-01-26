@@ -24,7 +24,6 @@ public class IndexController {
 
     @RequestMapping("/find/population")
     public MyResult findPopulation(@RequestBody PopulationRequest populationRequest) {
-        log.info("123123");
         return MyResult.success(populationBusiness.listPopulationInfo(populationRequest));
     }
 

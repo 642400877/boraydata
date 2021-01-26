@@ -6,4 +6,8 @@ public class Constant {
 
     public static final String NO = "NO";
 
+    public static final String POPULATION = "population";
+
+    public static final String ECONOMICS = "economics";
+
 }
