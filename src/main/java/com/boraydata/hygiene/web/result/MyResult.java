@@ -11,15 +11,12 @@ public class MyResult implements Serializable {
     private Integer code;
     // 消息
     private String msg;
-    // 时间戳
-    private Long time;
     // 返回数据
     private Object data;
 
     private MyResult(Integer code, String msg, Object data) {
         this.code = code;
         this.msg = msg;
-        this.time = new Date().getTime();
         this.data = data;
     }
 
@@ -45,7 +42,7 @@ public class MyResult implements Serializable {
      * @return Result
      */
     public static MyResult error(String msg){
-        return new MyResult(240, msg, null);
+        return new MyResult(500, msg, null);
     }
 
     /**

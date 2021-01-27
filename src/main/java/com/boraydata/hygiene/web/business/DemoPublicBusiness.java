@@ -24,8 +24,4 @@ public class DemoPublicBusiness {
         return populationEntityList;
     }
 
-    public List<> populationNumber() {
-
-    }
-
 }
