@@ -2,19 +2,15 @@ package com.boraydata.hygiene.web.request;
 
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class PopulationRequest {
+public class OnePlaceRequest {
 
-    private String placeName;
+    private String placerName;
 
     private Integer placeId;
 
     private Integer demoFloat;
 
     private Integer size;
-
-    private List<String> placeNameList;
 
 }

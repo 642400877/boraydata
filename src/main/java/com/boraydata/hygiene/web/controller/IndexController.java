@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-@RequestMapping("/main")
 public class IndexController {
 
     @Autowired
@@ -21,11 +20,6 @@ public class IndexController {
 
     @Autowired
     EconomicsBusiness economicsBusiness;
-
-    @RequestMapping("/find/population")
-    public MyResult findPopulation(@RequestBody PopulationRequest populationRequest) {
-        return MyResult.success(populationBusiness.listPopulationInfo(populationRequest));
-    }
 
     @RequestMapping("/find/economics")
     public MyResult findEconomics(@RequestBody EconomicsRequest economicsRequest) {
