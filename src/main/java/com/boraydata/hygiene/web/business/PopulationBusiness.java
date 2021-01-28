@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -28,6 +29,12 @@ public class PopulationBusiness {
 
     @Transactional(rollbackFor = Exception.class)
     public List<PopulationEntity> listPopulationInfo(PopulationRequest populationRequest) throws BusinessException{
+        if(Objects.isNull(populationRequest.getSize())) {
+            populationRequest.setSize(7);
+        }
+        if(Objects.isNull(populationRequest.getDemoFloat())) {
+            populationRequest.setDemoFloat(3);
+        }
         List<PopulationEntity> populationEntityList = new ArrayList<>();
         populationRequest.getPlaceNameList().forEach(item -> {
             PopulationRequest populationRequest2 = new PopulationRequest();

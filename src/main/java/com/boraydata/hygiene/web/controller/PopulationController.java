@@ -1,7 +1,6 @@
 package com.boraydata.hygiene.web.controller;
 
 import com.boraydata.hygiene.web.business.PopulationBusiness;
-import com.boraydata.hygiene.web.request.OnePlaceRequest;
 import com.boraydata.hygiene.web.request.PopulationRequest;
 import com.boraydata.hygiene.web.result.MyResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +15,6 @@ public class PopulationController {
     PopulationBusiness populationBusiness;
 
     @RequestMapping("population")
-    public MyResult findPopulation(@RequestBody PopulationRequest populationRequest) {
-        return MyResult.success(populationBusiness.populationInfo(populationRequest));
-    }
-
-    @RequestMapping("population/List")
     public MyResult findPopulationList(@RequestBody PopulationRequest populationRequest) throws NoSuchFieldException, IllegalAccessException {
         return MyResult.success(populationBusiness.listPopulationInfo(populationRequest));
     }

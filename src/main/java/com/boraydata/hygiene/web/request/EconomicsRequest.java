@@ -2,16 +2,19 @@ package com.boraydata.hygiene.web.request;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class EconomicsRequest {
 
-    /**
-     * 请求的长度 不要超过数据库的总数据
-     */
+    private String placeName;
+
+    private Integer placeId;
+
+    private Integer demoFloat;
+
     private Integer size;
-    /**
-     * 当前数据滚动的起始位置
-     */
-    private Integer index;
+
+    private List<String> placeNameList;
 
 }

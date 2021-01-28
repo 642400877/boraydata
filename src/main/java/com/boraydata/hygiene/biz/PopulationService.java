@@ -1,8 +1,6 @@
 package com.boraydata.hygiene.biz;
 
-import com.boraydata.hygiene.dal.entity.PlaceEntity;
 import com.boraydata.hygiene.dal.entity.PopulationEntity;
-import com.boraydata.hygiene.web.request.OnePlaceRequest;
 import com.boraydata.hygiene.web.request.PopulationRequest;
 
 import java.util.List;

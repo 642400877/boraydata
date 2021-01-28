@@ -14,8 +14,8 @@ public class EconomicsBusiness {
     @Autowired
     EconomicsService economicsService;
 
-    public List<EconomicsEntity> listEconomicsInfo(EconomicsRequest economicsRequest) {
-        return economicsService.listMainEconomics(economicsRequest);
-    }
+//    public List<EconomicsEntity> listEconomicsInfo(EconomicsRequest economicsRequest) {
+//        return economicsService.listMainEconomics(economicsRequest);
+//    }
 
 }
