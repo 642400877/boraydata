@@ -1,5 +1,6 @@
 package com.boraydata.hygiene.dal.entity;
 
+import com.boraydata.hygiene.common.annotation.RandomAnnotation;
 import lombok.Data;
 
 @Data
@@ -9,32 +10,40 @@ public class EconomicsEntity {
     /**
      * gdp
      */
-    private String gdp;
+    @RandomAnnotation(min = 7000000, max = 9000000)
+    private Integer gdp;
     /**
      * cpi
      */
-    private String cpi;
+    @RandomAnnotation(min=100, max = 120)
+    private Integer cpi;
     /**
      * 社会固定资产
      */
-    private String socialFixedAssets;
+    @RandomAnnotation(min = 700000, max = 900000)
+    private Integer socialFixedAssets;
     /**
      * 财政收入
      */
-    private String revenue;
+    @RandomAnnotation(min = 700000, max = 900000)
+    private Integer revenue;
     /**
      * 财政预算
      */
-    private String budget;
+    @RandomAnnotation(min = 700000, max = 900000)
+    private Integer budget;
     /**
      * 增速
      */
-    private String speedIncrease;
+    @RandomAnnotation(max = 1000, needFloat = true, floatNumber = 2)
+    private Float speedIncrease;
     /**
      * 经济损失
      */
-    private String loss;
+    @RandomAnnotation(min = 7000000, max = 9000000)
+    private Integer loss;
 
     private String dataTime;
 
+    private String placeName;
 }
