@@ -11,7 +11,5 @@ public interface PopulationService {
 
     List<PopulationEntity> listMainPopulation(PopulationRequest populationRequest);
 
-//    List<PopulationEntity> listPopulation(PopulationRequest populationRequest);
-
     boolean addPopulationInfo(List<PopulationEntity> populationEntity);
 }
