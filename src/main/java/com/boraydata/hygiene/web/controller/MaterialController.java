@@ -1,7 +1,7 @@
 package com.boraydata.hygiene.web.controller;
 
-import com.boraydata.hygiene.web.business.EconomicsBusiness;
-import com.boraydata.hygiene.web.request.EconomicsRequest;
+import com.boraydata.hygiene.web.business.MaterialBusiness;
+import com.boraydata.hygiene.web.request.MaterialRequest;
 import com.boraydata.hygiene.web.result.MyResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/private/v1")
-public class EconomicsController {
+public class MaterialController {
 
     @Autowired
-    EconomicsBusiness economicsBusiness;
+    MaterialBusiness materialBusiness;
 
-    @RequestMapping("economics")
-    public MyResult economics(@RequestBody EconomicsRequest economicsRequest) {
-        return MyResult.success(economicsBusiness.listPopulationInfo(economicsRequest));
+    @RequestMapping("material")
+    public MyResult material(@RequestBody MaterialRequest materialRequest) {
+        return MyResult.success(materialBusiness.listMaterialInfo(materialRequest));
     }
 
 }
