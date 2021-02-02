@@ -23,6 +23,7 @@ public class UserBusiness {
             throw new BusinessException("用户名不存在或者密码不正确");
         }
         userEntity.setToken(JwtUtil.createJWT(String.valueOf(userEntity.getId()), userEntity.getUsername()));
+
         return userEntity;
     }
 

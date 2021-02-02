@@ -4,6 +4,7 @@ import com.boraydata.hygiene.web.business.UserBusiness;
 import com.boraydata.hygiene.web.request.LoginRequest;
 import com.boraydata.hygiene.web.result.MyResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,9 @@ public class UserController {
 
     @Autowired
     UserBusiness userBusiness;
+
+    @Autowired
+    StringRedisTemplate redisTemplate;
 
     @RequestMapping("login")
     public MyResult login(@RequestBody LoginRequest loginRequest) {
