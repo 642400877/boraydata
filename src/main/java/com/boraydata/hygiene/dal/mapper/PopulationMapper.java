@@ -12,6 +12,7 @@ import java.util.List;
 @Mapper
 public interface PopulationMapper {
 
+    //查看对应地名的记录条数
     @Select("select count(1) " +
             "from hygiene.population " +
             "where place_name = #{populationQuery.placeName}")

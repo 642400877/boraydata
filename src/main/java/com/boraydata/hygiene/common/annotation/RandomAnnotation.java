@@ -15,4 +15,10 @@ public @interface RandomAnnotation {
 
     int floatNumber() default 0;
 
+    //浮动范围最大值
+    int maxFloat();
+
+    //浮动范围最小值
+    int minFloat();
+
 }

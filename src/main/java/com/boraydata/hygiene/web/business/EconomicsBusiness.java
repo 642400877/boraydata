@@ -17,5 +17,4 @@ public class EconomicsBusiness {
     public List<EconomicsEntity> listEconomicsInfo(EconomicsRequest economicsRequest) {
         return economicsService.listMainEconomics(economicsRequest);
     }
-
 }
