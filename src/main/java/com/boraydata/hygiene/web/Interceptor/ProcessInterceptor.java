@@ -29,13 +29,13 @@ public class ProcessInterceptor implements HandlerInterceptor {
             httpServletResponse.setStatus(200);
             return false;
         }
-        String token = httpServletRequest.getHeader("Authorization");
-        if (StringUtil.isNullOrBlank(token)) {
-            throw new BusinessException("token信息不存在或者过期,请重新登录");
-        } else {
-            token = token.split(" ")[1];
-            JwtUtil.parseJWT(token);
-        }
+//        String token = httpServletRequest.getHeader("Authorization");
+//        if (StringUtil.isNullOrBlank(token)) {
+//            throw new BusinessException("token信息不存在或者过期,请重新登录");
+//        } else {
+//            token = token.split(" ")[1];
+//            JwtUtil.parseJWT(token);
+//        }
 
         System.out.println(method);
         return true;

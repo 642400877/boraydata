@@ -5,11 +5,14 @@ import com.boraydata.hygiene.common.annotation.RandomAnnotation;
 import com.boraydata.hygiene.common.excention.BusinessException;
 import com.boraydata.hygiene.dal.entity.PopulationEntity;
 import com.boraydata.hygiene.web.request.PopulationRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -85,5 +88,26 @@ public class PopulationBusiness {
             populationEntityList.add(populationEntity);
         }
         populationService.addPopulationInfo(populationEntityList);
+    }
+
+    public void demoFloatCreate(int size, PopulationEntity populationEntityDb, int demoFloat) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        List<PopulationEntity> populationEntityList = new ArrayList<>();
+        PopulationEntity populationEntity = new PopulationEntity();
+        PopulationEntity populationEntity2;
+        BeanUtils.copyProperties(populationEntityDb, populationEntity);
+        for (int i = 0; i < size; i++) {
+            Field[] field = populationEntity.getClass().getDeclaredFields();
+            populationEntity2 = new PopulationEntity();
+            for (int j = 0; j < field.length; j++) {
+                String name = field[j].getName();
+                name = name.substring(0,1).toUpperCase()+name.substring(1);
+                String type = field[j].getGenericType().toString();
+                RandomAnnotation randomAnnotation = field[j].getAnnotation(RandomAnnotation.class);
+                if (randomAnnotation != null) {
+                    Method m = populationEntity.getClass().getMethod("get" + name);
+                    field[j].set(populationEntity2,  m.invoke(populationEntity));
+                }
+            }
+        }
     }
 }

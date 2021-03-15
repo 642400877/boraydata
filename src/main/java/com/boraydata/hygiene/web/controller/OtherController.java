@@ -7,6 +7,7 @@ import com.boraydata.hygiene.web.result.MyResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,8 +25,8 @@ public class OtherController {
         return MyResult.success(otherBusiness.findReason(otherRequest));
     }
 
-    @RequestMapping("video")
-    public MyResult video(@RequestBody OtherRequest otherRequest) {
+    @RequestMapping(value = "video", method = RequestMethod.GET)
+    public MyResult video() {
         return MyResult.success(otherService.findVideo());
     }
 }
