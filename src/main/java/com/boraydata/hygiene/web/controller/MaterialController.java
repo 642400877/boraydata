@@ -6,6 +6,7 @@ import com.boraydata.hygiene.web.result.MyResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,7 +16,7 @@ public class MaterialController {
     @Autowired
     MaterialBusiness materialBusiness;
 
-    @RequestMapping("material")
+    @RequestMapping(value = "material", method = RequestMethod.POST)
     public MyResult material(@RequestBody MaterialRequest materialRequest) {
         return MyResult.success(materialBusiness.listMaterialInfo(materialRequest));
     }

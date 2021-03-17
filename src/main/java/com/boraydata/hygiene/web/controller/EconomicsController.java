@@ -6,6 +6,7 @@ import com.boraydata.hygiene.web.result.MyResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,7 +16,7 @@ public class EconomicsController {
     @Autowired
     EconomicsBusiness economicsBusiness;
 
-    @RequestMapping("economics")
+    @RequestMapping(value = "economics", method = RequestMethod.POST)
     public MyResult economics(@RequestBody EconomicsRequest economicsRequest) {
         return MyResult.success(economicsBusiness.listPopulationInfo(economicsRequest));
     }

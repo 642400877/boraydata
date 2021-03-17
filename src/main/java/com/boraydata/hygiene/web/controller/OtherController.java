@@ -20,7 +20,7 @@ public class OtherController {
     @Autowired
     OtherService otherService;
 
-    @RequestMapping("reason")
+    @RequestMapping(value = "reason", method = RequestMethod.POST)
     public MyResult reason(@RequestBody OtherRequest otherRequest) {
         return MyResult.success(otherBusiness.findReason(otherRequest));
     }

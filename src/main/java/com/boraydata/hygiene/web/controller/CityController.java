@@ -18,17 +18,17 @@ public class CityController {
     @Autowired
     CityBusiness cityBusiness;
 
-    @RequestMapping("school")
+    @RequestMapping(value = "school", method = RequestMethod.POST)
     public MyResult schoolInfo(@RequestBody SchoolRequest schoolRequest) {
         return MyResult.success(schoolBusiness.school(schoolRequest));
     }
 
-    @RequestMapping("schoolInfo")
+    @RequestMapping(value = "schoolInfo", method = RequestMethod.POST)
     public MyResult school(@RequestBody SchoolRequest schoolRequest) {
         return MyResult.success(schoolBusiness.schoolInfo(schoolRequest));
     }
 
-    @RequestMapping("schoolSimulation")
+    @RequestMapping(value = "schoolSimulation", method = RequestMethod.POST)
     public MyResult schoolSimulation(@RequestBody SchoolRequest schoolRequest) {
         return MyResult.success(schoolBusiness.listPopulationInfo(schoolRequest));
     }
@@ -38,7 +38,7 @@ public class CityController {
         return MyResult.success(schoolBusiness.listSchoolAll());
     }
 
-    @RequestMapping("fireControlInfo")
+    @RequestMapping(value = "fireControlInfo", method = RequestMethod.POST)
     public MyResult fireControlInfo(@RequestBody FireControlRequest fireControlRequest) {
         return MyResult.success(cityBusiness.fireControlInfo(fireControlRequest));
     }
