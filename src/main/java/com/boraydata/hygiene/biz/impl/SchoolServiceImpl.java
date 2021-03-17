@@ -3,6 +3,7 @@ package com.boraydata.hygiene.biz.impl;
 import com.boraydata.hygiene.biz.SchoolService;
 import com.boraydata.hygiene.dal.entity.SchoolEntity;
 import com.boraydata.hygiene.dal.entity.SchoolInfoEntity;
+import com.boraydata.hygiene.dal.entity.SchoolSimulationEntity;
 import com.boraydata.hygiene.dal.mapper.SchoolMapper;
 import com.boraydata.hygiene.dal.query.SchoolQuery;
 import com.boraydata.hygiene.web.request.SchoolRequest;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -59,5 +61,31 @@ public class SchoolServiceImpl implements SchoolService {
         }
         schoolInfoEntity.setDataTime(date.getTime());
         return schoolInfoEntity;
+    }
+
+    @Override
+    public Integer findSchoolSimulationExist(SchoolRequest schoolRequest) {
+        SchoolQuery schoolQuery = new SchoolQuery();
+        schoolQuery.setSchoolName(schoolRequest.getSchoolName());
+        return schoolMapper.findSchoolSimulationExistBySchoolName(schoolQuery);
+    }
+
+    @Override
+    public List<SchoolSimulationEntity> listSchoolSimulation(SchoolRequest schoolRequest) {
+        SchoolQuery schoolQuery = new SchoolQuery();
+        schoolQuery.setSchoolName(schoolRequest.getSchoolName());
+        schoolQuery.setLimit(schoolRequest.getSize());
+        return schoolMapper.findSchoolSimulationInfoBySchoolName(schoolQuery);
+    }
+
+    @Override
+    public boolean addSchoolSimulation(List<SchoolSimulationEntity> schoolSimulationEntity) {
+        schoolMapper.addSchoolSimulationInfoList(schoolSimulationEntity);
+        return true;
+    }
+
+    @Override
+    public List<SchoolEntity> listSchoolAll() {
+        return schoolMapper.findSchool();
     }
 }

@@ -26,7 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
         //注册TestInterceptor拦截器
         InterceptorRegistration registration = registry.addInterceptor(getAccessLimitIntercept());
         registration.addPathPatterns("/**");                      //所有路径都被拦截
-        registration.excludePathPatterns("/api/private/v1/login");                         //添加不拦截路径
+//        registration.excludePathPatterns("/api/private/v1/login");                         //添加不拦截路径
     }
 
 }

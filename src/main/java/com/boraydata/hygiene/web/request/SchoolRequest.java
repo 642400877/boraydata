@@ -9,9 +9,13 @@ public class SchoolRequest {
 
     private String schoolPosition;
 
-    private String SchoolName;
+    private String schoolName;
+
+    private List<String> schoolNameList;
 
     private Long dataTime;
+
+    private Integer size;
 
     private List<String> schoolBuildList;
 

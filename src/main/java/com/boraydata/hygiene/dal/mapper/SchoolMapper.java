@@ -18,18 +18,27 @@ public interface SchoolMapper {
             "where school_name = #{schoolQuery.schoolName}")
     SchoolEntity findSchoolBySchoolName(@Param("schoolQuery") SchoolQuery schoolQuery);
 
-    @Select("select id, consistency, population_number populationNumber, security_number securityNumber, school_name schoolName, school_place schoolPlace " +
-            "from hygiene.schoolSimulation " +
+    @Select("select count(1) " +
+            "from hygiene.school_simulation " +
+            "where school_name = #{schoolQuery.schoolName}")
+    Integer findSchoolSimulationExistBySchoolName(@Param("schoolQuery") SchoolQuery schoolQuery);
+
+    @Select("select id, school_consistency schoolConsistency, school_population_number schoolPopulationNumber, security_number securityNumber, school_name schoolName " +
+            "from hygiene.school_simulation " +
             "where school_name = #{schoolQuery.schoolName} " +
-            "order by id limit #{schoolQuery.limit}")
-    SchoolSimulationEntity findSchoolSimulationInfoBySchoolName(@Param("schoolQuery")SchoolQuery schoolQuery);
+            "order by id desc limit #{schoolQuery.limit}")
+    List<SchoolSimulationEntity> findSchoolSimulationInfoBySchoolName(@Param("schoolQuery")SchoolQuery schoolQuery);
 
     @Insert("<script>" +
-            "insert into hygiene.population(population_number, securityNumber, birth_number, schoolName, schoolPlace " +
+            "insert into hygiene.school_simulation(school_consistency, school_population_number, security_number, school_name) " +
             "values " +
             "<foreach item='item' collection='schoolSimulationEntityList' separator=','>" +
-            "(#{item.populationNumber}, #{item.securityNumber}, #{item.schoolName},#{item.schoolPlace} " +
+            "(#{item.schoolConsistency}, #{item.schoolPopulationNumber}, #{item.securityNumber}, #{item.schoolName}) " +
             "</foreach>" +
             "</script>")
     boolean addSchoolSimulationInfoList(@Param("schoolSimulationEntityList") List<SchoolSimulationEntity> schoolSimulationEntityList);
+
+    @Select("select id, school_name schoolName, school_position schoolPosition, school_build_list schoolBuildListStr " +
+            "from school")
+    List<SchoolEntity> findSchool();
 }

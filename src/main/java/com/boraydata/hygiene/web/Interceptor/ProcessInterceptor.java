@@ -1,9 +1,5 @@
 package com.boraydata.hygiene.web.Interceptor;
 
-import com.boraydata.hygiene.common.excention.BusinessException;
-import com.boraydata.hygiene.common.util.JwtUtil;
-import com.boraydata.hygiene.common.util.StringUtil;
-import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -36,8 +32,6 @@ public class ProcessInterceptor implements HandlerInterceptor {
 //            token = token.split(" ")[1];
 //            JwtUtil.parseJWT(token);
 //        }
-
-        System.out.println(method);
         return true;
     }
     @Override
