@@ -5,6 +5,7 @@ import com.boraydata.hygiene.web.business.SchoolBusiness;
 import com.boraydata.hygiene.web.request.FireControlRequest;
 import com.boraydata.hygiene.web.request.SchoolRequest;
 import com.boraydata.hygiene.web.result.MyResult;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ public class CityController {
     @Autowired
     CityBusiness cityBusiness;
 
+    @ApiOperation("学校查询接口")
     @RequestMapping(value = "school", method = RequestMethod.POST)
     public MyResult schoolInfo(@RequestBody SchoolRequest schoolRequest) {
         return MyResult.success(schoolBusiness.school(schoolRequest));
