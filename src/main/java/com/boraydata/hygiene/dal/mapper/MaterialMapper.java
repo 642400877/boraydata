@@ -1,6 +1,5 @@
 package com.boraydata.hygiene.dal.mapper;
 
-import com.boraydata.hygiene.dal.entity.EconomicsEntity;
 import com.boraydata.hygiene.dal.entity.MaterialEntity;
 import com.boraydata.hygiene.dal.query.MaterialQuery;
 import org.apache.ibatis.annotations.Insert;

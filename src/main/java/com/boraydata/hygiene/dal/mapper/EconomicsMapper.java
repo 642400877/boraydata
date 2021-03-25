@@ -1,9 +1,7 @@
 package com.boraydata.hygiene.dal.mapper;
 
 import com.boraydata.hygiene.dal.entity.EconomicsEntity;
-import com.boraydata.hygiene.dal.entity.PopulationEntity;
 import com.boraydata.hygiene.dal.query.EconomicsQuery;
-import com.boraydata.hygiene.dal.query.PopulationQuery;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

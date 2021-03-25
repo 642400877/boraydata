@@ -3,7 +3,6 @@ package com.boraydata.hygiene.web.business;
 import com.boraydata.hygiene.biz.MaterialService;
 import com.boraydata.hygiene.common.annotation.RandomAnnotation;
 import com.boraydata.hygiene.common.excention.BusinessException;
-import com.boraydata.hygiene.dal.entity.EconomicsEntity;
 import com.boraydata.hygiene.dal.entity.MaterialEntity;
 import com.boraydata.hygiene.web.request.MaterialRequest;
 import org.springframework.beans.factory.annotation.Autowired;

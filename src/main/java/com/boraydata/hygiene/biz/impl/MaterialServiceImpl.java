@@ -1,7 +1,6 @@
 package com.boraydata.hygiene.biz.impl;
 
 import com.boraydata.hygiene.biz.MaterialService;
-import com.boraydata.hygiene.dal.entity.EconomicsEntity;
 import com.boraydata.hygiene.dal.entity.MaterialEntity;
 import com.boraydata.hygiene.dal.mapper.MaterialMapper;
 import com.boraydata.hygiene.dal.query.MaterialQuery;

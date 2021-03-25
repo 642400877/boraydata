@@ -2,7 +2,6 @@ package com.boraydata.hygiene.dal.mapper;
 
 import com.boraydata.hygiene.dal.entity.UserEntity;
 import com.boraydata.hygiene.dal.query.UserQuery;
-import com.boraydata.hygiene.web.request.LoginRequest;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
