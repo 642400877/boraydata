@@ -8,6 +8,8 @@ import java.util.Date;
 @Data
 public class PopulationEntity {
 
+    private Long id;
+
     @RandomAnnotation(max = 9000000)
     private Integer populationNumber;
     /**

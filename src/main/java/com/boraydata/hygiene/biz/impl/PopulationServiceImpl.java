@@ -8,6 +8,7 @@ import com.boraydata.hygiene.web.request.PopulationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -26,7 +27,9 @@ public class PopulationServiceImpl implements PopulationService {
         PopulationQuery populationQuery = new PopulationQuery();
         populationQuery.setPlaceName(populationRequest.getPlaceName());
         populationQuery.setLimit(populationRequest.getSize());
-        return populationMapper.findPopulationInfoByPlaceName(populationQuery);
+        List<PopulationEntity> populationEntityList = populationMapper.findPopulationInfoByPlaceName(populationQuery);
+        Collections.reverse(populationEntityList);
+        return populationEntityList;
     }
 
     public boolean addPopulationInfo(List<PopulationEntity> populationEntityList) {
