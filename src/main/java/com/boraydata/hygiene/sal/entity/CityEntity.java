@@ -2,6 +2,8 @@ package com.boraydata.hygiene.sal.entity;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class CityEntity {
     /**
@@ -52,5 +54,9 @@ public class CityEntity {
      *
      */
     private String cityEnglishName;
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
 }

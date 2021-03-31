@@ -30,7 +30,6 @@ public class Isaaclin {
         Map<String, String> map = new HashMap<>();
         map.put("province", areaRequest.getProvince());
         AreaEntity areaEntity = JSONObject.parseObject(HttpUtil.httpGetConnection(mainUrl + areaUrl, map), AreaEntity.class);
-
         return areaEntity;
     }
 }
