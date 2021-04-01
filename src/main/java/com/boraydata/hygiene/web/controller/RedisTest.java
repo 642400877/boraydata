@@ -2,6 +2,7 @@ package com.boraydata.hygiene.web.controller;
 
 import com.boraydata.hygiene.biz.RealDataService;
 import com.boraydata.hygiene.biz.impl.RealDataServiceImpl;
+import com.boraydata.hygiene.dal.mapper.CommonMapper;
 import com.boraydata.hygiene.sal.client.Isaaclin;
 import com.boraydata.hygiene.sal.client.Ncov;
 import com.boraydata.hygiene.sal.entity.AreaEntity;
@@ -35,6 +36,9 @@ public class RedisTest {
     @Autowired
     private RealDataService realDataService;
 
+    @Autowired
+    private CommonMapper commonMapper;
+
     @RequestMapping("redis")
     public void redis(@RequestBody OtherRequest otherRequest) {
         log.info(redisTemplate.opsForValue().get("1"));
@@ -62,5 +66,10 @@ public class RedisTest {
                 realDataService.addRealData(item);
             }
         });
+    }
+
+    @RequestMapping("drop")
+    public void drop() throws UnsupportedEncodingException, URISyntaxException {
+
     }
 }

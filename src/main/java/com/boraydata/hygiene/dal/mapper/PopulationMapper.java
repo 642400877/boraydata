@@ -49,4 +49,5 @@ public interface PopulationMapper {
             "</foreach>" +
             "</script>")
     boolean addPopulationInfoList(@Param("populationEntityList") List<PopulationEntity> populationEntityList);
+
 }

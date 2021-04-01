@@ -23,6 +23,7 @@ public class RealDataJobHandler {
 
     @XxlJob("realDataJobHandler")
     public void realDataJobHandler() throws Exception {
+        log.info("realDataJobHandler start");
         AreaRequest areaRequest = new AreaRequest();
         areaRequest.setProvince("北京市");
         AreaEntity areaEntity = isaaclin.areaApi(areaRequest);
@@ -30,8 +31,10 @@ public class RealDataJobHandler {
             if ("海淀区".equals(item.getCityName())) {
                 item.setUpdateTime(new Date(areaEntity.getResults().get(0).getUpdateTime()));
                 realDataService.addRealData(item);
+                return;
             }
         });
+        log.info("realDataJobHandler end");
     }
 
 }
