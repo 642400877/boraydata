@@ -17,20 +17,4 @@ class HygieneApplicationTests {
     @Test
     void contextLoads() {
     }
-
-    @Test
-    public void test2() throws UnsupportedEncodingException, URISyntaxException {
-        Isaaclin isaaclin = new Isaaclin();
-        RealDataService realDataService = new RealDataServiceImpl();
-
-        AreaRequest areaRequest = new AreaRequest();
-        areaRequest.setProvince("北京市");
-        AreaEntity areaEntity = isaaclin.areaApi(areaRequest);
-        areaEntity.getResults().get(0).getCities().stream().forEach(item -> {
-            if ("海淀区".equals(item.getCityName())) {
-                realDataService.addRealData(item);
-            }
-        });
-    }
-
 }

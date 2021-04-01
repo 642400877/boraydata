@@ -19,4 +19,8 @@ public class LoginRequest {
 
     private String token;
 
+    private String text;
+
+    private String salt;
+
 }

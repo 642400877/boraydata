@@ -3,6 +3,8 @@ package com.boraydata.hygiene.web.business;
 import com.boraydata.hygiene.biz.UserService;
 import com.boraydata.hygiene.common.excention.BusinessException;
 import com.boraydata.hygiene.common.util.JwtUtil;
+import com.boraydata.hygiene.common.util.MD5CommonEntity;
+import com.boraydata.hygiene.common.util.MD5Util;
 import com.boraydata.hygiene.common.util.StringUtil;
 import com.boraydata.hygiene.dal.entity.UserEntity;
 import com.boraydata.hygiene.web.request.LoginRequest;
@@ -17,33 +19,43 @@ public class UserBusiness {
     @Autowired
     UserService userService;
 
-    public UserEntity login(LoginRequest loginRequest) {
+    public UserEntity login(LoginRequest loginRequest) throws Exception {
         UserEntity userEntity = userService.findUser(loginRequest);
         if (!checkLogin(loginRequest, userEntity)) {
             throw new BusinessException("用户名不存在或者密码不正确");
         }
         userEntity.setToken(JwtUtil.createJWT(String.valueOf(userEntity.getId()), userEntity.getUsername()));
-
+        userEntity.setPassword("");
+        userEntity.setSalt("");
         return userEntity;
     }
 
-    public UserEntity register(LoginRequest loginRequest) {
+    public String publicKey() {
+
+
+        return null;
+    }
+
+    public UserEntity register(LoginRequest loginRequest) throws Exception {
         checkRegisterParam(loginRequest);
         UserEntity userEntity = userService.findUser(loginRequest);
         if (!Objects.isNull(userEntity)) {
             throw new BusinessException("用户名重复");
         }
+        userEntity = new UserEntity();
+        MD5CommonEntity md5CommonEntity = MD5Util.md5(loginRequest.getPassword());
+        loginRequest.setPassword(md5CommonEntity.getMd5());
+        loginRequest.setSalt(md5CommonEntity.getSalt());
         userService.addUser(loginRequest);
-        userEntity = userService.findUser(loginRequest);
         userEntity.setToken(JwtUtil.createJWT(String.valueOf(userEntity.getId()), userEntity.getUsername()));
-        return userService.findUser(loginRequest);
+        return userEntity;
     }
 
-    private boolean checkLogin(LoginRequest loginRequest, UserEntity userEntity) {
+    private boolean checkLogin(LoginRequest loginRequest, UserEntity userEntity) throws Exception {
         if (Objects.isNull(userEntity)) {
             return false;
         }
-        if (!loginRequest.getPassword().equals(userEntity.getPassword())) {
+        if (!MD5Util.verify(loginRequest.getPassword(), userEntity.getSalt(), userEntity.getPassword())) {
             return false;
         }
         return true;

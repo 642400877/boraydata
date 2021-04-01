@@ -19,4 +19,6 @@ public class UserEntity {
 
     private String token;
 
+    private String salt;
+
 }

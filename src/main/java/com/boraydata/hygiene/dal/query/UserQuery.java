@@ -21,4 +21,6 @@ public class UserQuery {
 
     private String token;
 
+    private String salt;
+
 }

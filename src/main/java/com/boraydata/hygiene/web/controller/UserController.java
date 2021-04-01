@@ -21,12 +21,12 @@ public class UserController {
     StringRedisTemplate redisTemplate;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public MyResult login(@RequestBody LoginRequest loginRequest) {
+    public MyResult login(@RequestBody LoginRequest loginRequest) throws Exception {
         return MyResult.success(userBusiness.login(loginRequest));
     }
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public MyResult register(@RequestBody LoginRequest loginRequest) {
+    public MyResult register(@RequestBody LoginRequest loginRequest) throws Exception {
         return MyResult.success(userBusiness.register(loginRequest));
     }
 

@@ -6,6 +6,7 @@ import com.boraydata.hygiene.dal.entity.UserEntity;
 import com.boraydata.hygiene.dal.mapper.UserMapper;
 import com.boraydata.hygiene.dal.query.UserQuery;
 import com.boraydata.hygiene.web.request.LoginRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,12 @@ public class UserServiceImpl implements UserService {
 
     public boolean addUser(LoginRequest loginRequest) throws BusinessException {
         UserQuery userQuery = new UserQuery();
+        BeanUtils.copyProperties(loginRequest, userQuery);
         userQuery.setRId(0);
-        userQuery.setUsername(loginRequest.getUsername());
-        userQuery.setEmail(loginRequest.getEmail());
-        userQuery.setPassword(loginRequest.getPassword());
-        userQuery.setMobile(loginRequest.getMobile());
+//        userQuery.setUsername(loginRequest.getUsername());
+//        userQuery.setEmail(loginRequest.getEmail());
+//        userQuery.setPassword(loginRequest.getPassword());
+//        userQuery.setMobile(loginRequest.getMobile());
         userQuery.setStatus(0);
         return userMapper.addUserInfo(userQuery);
     }
