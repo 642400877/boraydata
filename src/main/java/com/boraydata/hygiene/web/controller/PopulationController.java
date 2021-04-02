@@ -1,5 +1,6 @@
 package com.boraydata.hygiene.web.controller;
 
+import com.boraydata.hygiene.biz.AreaService;
 import com.boraydata.hygiene.web.business.PopulationBusiness;
 import com.boraydata.hygiene.web.request.PopulationRequest;
 import com.boraydata.hygiene.web.result.MyResult;
@@ -16,8 +17,21 @@ public class PopulationController {
     @Autowired
     PopulationBusiness populationBusiness;
 
+    @Autowired
+    AreaService areaService;
+
     @RequestMapping(value = "population", method = RequestMethod.POST)
     public MyResult findPopulationList(@RequestBody PopulationRequest populationRequest) throws NoSuchFieldException, IllegalAccessException {
         return MyResult.success(populationBusiness.listPopulationInfo(populationRequest));
+    }
+
+    @RequestMapping("haidianPopulationDetails")
+    public MyResult haidianPopulationDetails() {
+        return MyResult.success(areaService.areaPopulationDetails());
+    }
+
+    @RequestMapping("haidianPopulationHealthyDetails")
+    public MyResult haidianPopulationHealthyDetails() {
+        return MyResult.success(areaService.areaHealthyInfo());
     }
 }
