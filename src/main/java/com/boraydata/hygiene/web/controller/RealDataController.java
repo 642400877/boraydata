@@ -30,7 +30,7 @@ public class RealDataController {
 
     @RequestMapping("areaMap")
     public MyResult areaMapDate(@RequestBody AreaRequest areaRequest) throws IOException {
-        return MyResult.success(cityBusiness.areaMapData(areaRequest));
+        return MyResult.success(cityBusiness.areaMapData2(areaRequest));
     }
 
     @RequestMapping("areaList")

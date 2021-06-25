@@ -3,10 +3,12 @@ package com.boraydata.hygiene.web.business;
 import com.alibaba.fastjson.JSONObject;
 import com.boraydata.hygiene.biz.CityService;
 import com.boraydata.hygiene.common.type.OrganizationType;
+import com.boraydata.hygiene.common.util.StreamUtil;
 import com.boraydata.hygiene.dal.entity.FireControlEntity;
 import com.boraydata.hygiene.web.request.AreaMapRequest;
 import com.boraydata.hygiene.web.request.AreaRequest;
 import com.boraydata.hygiene.web.request.FireControlRequest;
+import com.boraydata.hygiene.web.response.AreaMapResponse;
 import com.boraydata.hygiene.web.response.FireControlAllResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -67,14 +69,31 @@ public class CityBusiness {
                     AreaMapRequest areaMapRequest = new AreaMapRequest();
                     areaMapRequest.setStreetName(placeName);
                     areaMapRequest.setPopulation(random.nextInt(50000) + 50000);
-                    List<List<Double>> path = JSONObject.parseObject(String.valueOf(JSONObject.parseObject(String.valueOf(oneAreaMap.get("geometry")), HashMap.class).get("coordinates")), ArrayList.class);
-                    areaMapRequest.setPath(new ArrayList<>());
-                    if (!CollectionUtils.isEmpty(path)) {
-                        for (int i = 0; i< path.size(); i++) {
-                            areaMapRequest.getPath().add(path.get(i));
+                    HashMap hashMap = JSONObject.parseObject(String.valueOf(oneAreaMap.get("geometry")), HashMap.class);
+                    if (Objects.isNull(hashMap.get("geometries"))) {
+                        List<List<Double>> path = JSONObject.parseObject(String.valueOf(JSONObject.parseObject(String.valueOf(oneAreaMap.get("geometry")), HashMap.class).get("coordinates")), ArrayList.class);
+                        areaMapRequest.setPath(new ArrayList<>());
+                        if (!CollectionUtils.isEmpty(path)) {
+                            for (int i = 0; i< path.size(); i++) {
+                                areaMapRequest.getPath().add(path.get(i));
+                            }
+                        }
+                        areaMapRequestList.add(areaMapRequest);
+                    }
+                    else {
+                        ArrayList<String> arrayList1 = JSONObject.parseObject(String.valueOf(hashMap.get("geometries")), ArrayList.class);
+                        areaMapRequest.setPath(new ArrayList<>());
+                        for (int j = 0; j < arrayList1.size(); j++) {
+//                            Object sdf = arrayList1.get(j);
+                            List<List<Double>> path = JSONObject.parseObject(String.valueOf(JSONObject.parseObject(String.valueOf(arrayList1.get(j)), HashMap.class).get("coordinates")), ArrayList.class);
+                            if (!CollectionUtils.isEmpty(path)) {
+                                for (int i = 0; i< path.size(); i++) {
+                                    areaMapRequest.getPath().add(path.get(i));
+                                }
+                            }
+                            areaMapRequestList.add(areaMapRequest);
                         }
                     }
-                    areaMapRequestList.add(areaMapRequest);
                 }
             });
             return areaMapRequestList;
@@ -90,5 +109,45 @@ public class CityBusiness {
             }
         }
         return sbf.toString();
+    }
+
+    public Object areaMapData2(AreaRequest areaRequest) throws IOException {
+        String json = StreamUtil.readLocalFile("map.json");
+        Random random = new Random();
+        List<AreaMapResponse> areaMapResponseList = new ArrayList<>();
+        List<String> areaList = Arrays.asList(area.split(","));
+        ArrayList arrayList = JSONObject.parseObject(String.valueOf(JSONObject.parseObject(json, HashMap.class).get("features")), ArrayList.class);
+        arrayList.forEach(item -> {
+            HashMap oneAreaMap = JSONObject.parseObject(String.valueOf(item), HashMap.class);
+            String placeName = String.valueOf(JSONObject.parseObject(String.valueOf(oneAreaMap.get("properties")), HashMap.class).get("name"));
+            if (areaList.contains(placeName)) {
+                HashMap hashMap = JSONObject.parseObject(String.valueOf(oneAreaMap.get("geometry")), HashMap.class);
+                if (Objects.isNull(hashMap.get("geometries"))) {
+                    List<List<List<Double>>> path = JSONObject.parseObject(String.valueOf(JSONObject.parseObject(String.valueOf(oneAreaMap.get("geometry")), HashMap.class).get("coordinates")), ArrayList.class);
+                    Integer populationNumber = random.nextInt(100000) + 20000;
+                    path.forEach(item2 -> {
+                        AreaMapResponse areaMapResponse = new AreaMapResponse();
+                        areaMapResponse.setPlaceName(placeName);
+                        areaMapResponse.setPopulationNumber(populationNumber);
+                        areaMapResponse.setPath(item2);
+                        areaMapResponseList.add(areaMapResponse);
+                    });
+                } else {
+                    ArrayList<String> arrayList1 = JSONObject.parseObject(String.valueOf(hashMap.get("geometries")), ArrayList.class);
+                    for (int i = 0; i < arrayList1.size(); i++) {
+                        List<List<List<Double>>> path = JSONObject.parseObject(String.valueOf(JSONObject.parseObject(String.valueOf(arrayList1.get(i)), HashMap.class).get("coordinates")), ArrayList.class);
+                        Integer populationNumber = random.nextInt(100000) + 20000;
+                        path.forEach(item4 -> {
+                            AreaMapResponse areaMapResponse = new AreaMapResponse();
+                            areaMapResponse.setPlaceName(placeName);
+                            areaMapResponse.setPopulationNumber(populationNumber);
+                            areaMapResponse.setPath(item4);
+                            areaMapResponseList.add(areaMapResponse);
+                        });
+                    }
+                }
+            }
+        });
+        return areaMapResponseList;
     }
 }
