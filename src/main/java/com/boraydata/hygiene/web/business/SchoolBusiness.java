@@ -43,7 +43,7 @@ public class SchoolBusiness {
 
     @Transactional(rollbackFor = Exception.class)
     public List<SchoolSimulationEntity> listPopulationInfo(SchoolRequest schoolRequest) throws BusinessException {
-        if(Objects.isNull(schoolRequest.getSize())) {
+        if (Objects.isNull(schoolRequest.getSize())) {
             schoolRequest.setSize(7);
         }
         List<SchoolSimulationEntity> schoolSimulationEntityList = new ArrayList<>();
@@ -70,23 +70,23 @@ public class SchoolBusiness {
         Random rand = new Random();
         List<SchoolSimulationEntity> schoolSimulationEntityList = new ArrayList<>();
         Field[] fields = SchoolSimulationEntity.class.getDeclaredFields();
-        for(int j = 0; j < size; j++) {
+        for (int j = 0; j < size; j++) {
             SchoolSimulationEntity schoolSimulationEntity = new SchoolSimulationEntity();
             for (int i = 0; i < fields.length; i++) {
                 Field field = schoolSimulationEntity.getClass().getDeclaredField(fields[i].getName());
                 RandomAnnotation randomAnnotation = field.getAnnotation(RandomAnnotation.class);
                 if (randomAnnotation != null) {
-                    double num  = rand.nextInt(randomAnnotation.max()) + randomAnnotation.min();
+                    double num = rand.nextInt(randomAnnotation.max()) + randomAnnotation.min();
                     if (randomAnnotation.needFloat()) {
-                        num  = num / Math.pow(10, randomAnnotation.floatNumber());
+                        num = num / Math.pow(10, randomAnnotation.floatNumber());
                     }
                     field.setAccessible(true);
-                    if("class java.lang.Integer".equals(field.getGenericType().toString())) {
-                        field.set(schoolSimulationEntity, (int)num);
-                    } else if("class java.lang.Float".equals(field.getGenericType().toString())) {
-                        field.set(schoolSimulationEntity, (float)num);
-                    } else if("class java.lang.Long".equals(field.getGenericType().toString())) {
-                        field.set(schoolSimulationEntity, (long)num);
+                    if ("class java.lang.Integer".equals(field.getGenericType().toString())) {
+                        field.set(schoolSimulationEntity, (int) num);
+                    } else if ("class java.lang.Float".equals(field.getGenericType().toString())) {
+                        field.set(schoolSimulationEntity, (float) num);
+                    } else if ("class java.lang.Long".equals(field.getGenericType().toString())) {
+                        field.set(schoolSimulationEntity, (long) num);
                     } else {
                         field.set(schoolSimulationEntity, num);
                     }

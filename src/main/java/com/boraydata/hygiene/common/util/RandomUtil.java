@@ -10,12 +10,12 @@ public class RandomUtil {
 
     public static int randomInt(Integer source, int floatIndex) {
         Double num = Math.random();
-        return (int)(source + (source * floatIndex * num) / 100);
+        return (int) (source + (source * floatIndex * num) / 100);
     }
 
     public static float randomFloat(Float source, int floatIndex) {
-       Double num = Math.random();
-       return (float)(source + (source * floatIndex * num) / 100);
+        Double num = Math.random();
+        return (float) (source + (source * floatIndex * num) / 100);
     }
 
     public static Double randomDouble(Double source, int floatIndex) {
@@ -25,7 +25,7 @@ public class RandomUtil {
 
     public static Long randomLong(Long source, int floatIndex) {
         Double num = Math.random();
-        return (long)(source + (source * floatIndex * num) / 100);
+        return (long) (source + (source * floatIndex * num) / 100);
     }
 
 //    public static List<Float> splitRandom(int total, int size, Float min, Float max) {

@@ -9,9 +9,9 @@ import java.util.Date;
 
 public class JwtUtil {
 
-    private static final String KEY = "token" ;	//盐
+    private static final String KEY = "token";    //盐
 
-    private static final int EXPIRE_TIME =  3600000; //过期时间  毫秒
+    private static final int EXPIRE_TIME = 3600000; //过期时间  毫秒
 
     /**
      * 生成JWT
@@ -28,18 +28,19 @@ public class JwtUtil {
                 .setIssuedAt(now)
                 .signWith(SignatureAlgorithm.HS256, KEY);
         if (EXPIRE_TIME > 0) {
-            builder.setExpiration( new Date( nowMillis + EXPIRE_TIME));
+            builder.setExpiration(new Date(nowMillis + EXPIRE_TIME));
         }
         return "Bearer " + builder.compact();
     }
 
     /**
      * 解析JWT
+     *
      * @param jwtStr
      * @return
      */
-    public static Claims parseJWT(String jwtStr){
-        return  Jwts.parser()
+    public static Claims parseJWT(String jwtStr) {
+        return Jwts.parser()
                 .setSigningKey(KEY)
                 .parseClaimsJws(jwtStr)
                 .getBody();

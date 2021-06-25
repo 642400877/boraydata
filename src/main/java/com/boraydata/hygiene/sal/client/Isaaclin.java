@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -31,5 +33,23 @@ public class Isaaclin {
         map.put("province", areaRequest.getProvince());
         AreaEntity areaEntity = JSONObject.parseObject(HttpUtil.httpGetConnection(mainUrl + areaUrl, map), AreaEntity.class);
         return areaEntity;
+    }
+
+    public List<AreaEntity> areaApiList(AreaRequest areaRequest){
+        List<AreaEntity> areaEntityList = new ArrayList<>();
+        areaRequest.getProvinceList().forEach(item -> {
+            Map<String, String> map = new HashMap<>();
+            map.put("province", item);
+            AreaEntity areaEntity = null;
+            try {
+                areaEntity = JSONObject.parseObject(HttpUtil.httpGetConnection(mainUrl + areaUrl, map), AreaEntity.class);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            areaEntityList.add(areaEntity);
+        });
+        return areaEntityList;
     }
 }

@@ -15,7 +15,7 @@ public class EconomicsEntity {
     /**
      * cpi
      */
-    @RandomAnnotation(min=100, max = 120)
+    @RandomAnnotation(min = 100, max = 120)
     private Integer cpi;
     /**
      * 社会固定资产

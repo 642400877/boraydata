@@ -13,6 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 这里需要先将限流拦截器入住，不然无法获取到拦截器中的redistemplate
+     *
      * @return
      */
     @Bean

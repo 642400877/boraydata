@@ -19,6 +19,6 @@ public interface RealDataMapper {
             "values" +
             "(#{cityEntity.cityName}, #{cityEntity.currentConfirmedCount}, #{cityEntity.confirmedCount}, #{cityEntity.suspectedCount}, #{cityEntity.curedCount}, " +
             "#{cityEntity.deadCount}, #{cityEntity.highDangerCount}, #{cityEntity.midDangerCount}, #{cityEntity.updateTime}, now())")
-    void addRealData(@Param("cityEntity")CityEntity cityEntity);
+    void addRealData(@Param("cityEntity") CityEntity cityEntity);
 
 }

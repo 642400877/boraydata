@@ -112,5 +112,5 @@ public class PlaceDataDto {
     /**
      * 人口稠密度
      */
-    private  Double populationDensity;
+    private Double populationDensity;
 }

@@ -25,10 +25,10 @@ public class EconomicsBusiness {
 
     @Transactional(rollbackFor = Exception.class)
     public List<EconomicsEntity> listPopulationInfo(EconomicsRequest economicsRequest) throws BusinessException {
-        if(Objects.isNull(economicsRequest.getSize())) {
+        if (Objects.isNull(economicsRequest.getSize())) {
             economicsRequest.setSize(7);
         }
-        if(Objects.isNull(economicsRequest.getDemoFloat())) {
+        if (Objects.isNull(economicsRequest.getDemoFloat())) {
             economicsRequest.setDemoFloat(3);
         }
         List<EconomicsEntity> economicsEntityList = new ArrayList<>();
@@ -55,23 +55,23 @@ public class EconomicsBusiness {
         Random rand = new Random();
         List<EconomicsEntity> economicsEntityList = new ArrayList<>();
         Field[] fields = EconomicsEntity.class.getDeclaredFields();
-        for(int j = 0; j < size; j++) {
+        for (int j = 0; j < size; j++) {
             EconomicsEntity economicsEntity = new EconomicsEntity();
             for (int i = 0; i < fields.length; i++) {
                 Field field = economicsEntity.getClass().getDeclaredField(fields[i].getName());
                 RandomAnnotation randomAnnotation = field.getAnnotation(RandomAnnotation.class);
                 if (randomAnnotation != null) {
-                    double num  = rand.nextInt(randomAnnotation.max()) + randomAnnotation.min();
+                    double num = rand.nextInt(randomAnnotation.max()) + randomAnnotation.min();
                     if (randomAnnotation.needFloat()) {
-                        num  = num / Math.pow(10, randomAnnotation.floatNumber());
+                        num = num / Math.pow(10, randomAnnotation.floatNumber());
                     }
                     field.setAccessible(true);
-                    if("class java.lang.Integer".equals(field.getGenericType().toString())) {
-                        field.set(economicsEntity, (int)num);
-                    } else if("class java.lang.Float".equals(field.getGenericType().toString())) {
-                        field.set(economicsEntity, (float)num);
-                    } else if("class java.lang.Long".equals(field.getGenericType().toString())) {
-                        field.set(economicsEntity, (long)num);
+                    if ("class java.lang.Integer".equals(field.getGenericType().toString())) {
+                        field.set(economicsEntity, (int) num);
+                    } else if ("class java.lang.Float".equals(field.getGenericType().toString())) {
+                        field.set(economicsEntity, (float) num);
+                    } else if ("class java.lang.Long".equals(field.getGenericType().toString())) {
+                        field.set(economicsEntity, (long) num);
                     } else {
                         field.set(economicsEntity, num);
                     }

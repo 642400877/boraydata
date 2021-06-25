@@ -27,7 +27,7 @@ public interface SchoolMapper {
             "from hygiene.school_simulation " +
             "where school_name = #{schoolQuery.schoolName} " +
             "order by id desc limit #{schoolQuery.limit}")
-    List<SchoolSimulationEntity> findSchoolSimulationInfoBySchoolName(@Param("schoolQuery")SchoolQuery schoolQuery);
+    List<SchoolSimulationEntity> findSchoolSimulationInfoBySchoolName(@Param("schoolQuery") SchoolQuery schoolQuery);
 
     @Insert("<script>" +
             "insert into hygiene.school_simulation(school_consistency, school_population_number, security_number, school_name) " +

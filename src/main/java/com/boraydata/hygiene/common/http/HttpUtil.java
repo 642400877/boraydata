@@ -64,12 +64,12 @@ public class HttpUtil {
 
         URIBuilder uriBuilder = new URIBuilder(url);
 
-        if(null != paramsMap) {
+        if (null != paramsMap) {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            for(Map.Entry<String, String> entry : paramsMap.entrySet()){
+            for (Map.Entry<String, String> entry : paramsMap.entrySet()) {
                 params.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
             }
-           uriBuilder.setParameters(params);
+            uriBuilder.setParameters(params);
         }
 
         HttpGet httpGet = new HttpGet(uriBuilder.build());

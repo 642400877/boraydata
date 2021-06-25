@@ -31,11 +31,11 @@ public class PopulationBusiness {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public List<PopulationEntity> listPopulationInfo(PopulationRequest populationRequest) throws BusinessException{
-        if(Objects.isNull(populationRequest.getSize())) {
+    public List<PopulationEntity> listPopulationInfo(PopulationRequest populationRequest) throws BusinessException {
+        if (Objects.isNull(populationRequest.getSize())) {
             populationRequest.setSize(7);
         }
-        if(Objects.isNull(populationRequest.getDemoFloat())) {
+        if (Objects.isNull(populationRequest.getDemoFloat())) {
             populationRequest.setDemoFloat(3);
         }
         List<PopulationEntity> populationEntityList = new ArrayList<>();
@@ -62,23 +62,23 @@ public class PopulationBusiness {
         Random rand = new Random();
         List<PopulationEntity> populationEntityList = new ArrayList<>();
         Field[] fields = PopulationEntity.class.getDeclaredFields();
-        for(int j = 0; j < size; j++) {
+        for (int j = 0; j < size; j++) {
             PopulationEntity populationEntity = new PopulationEntity();
             for (int i = 0; i < fields.length; i++) {
                 Field field = populationEntity.getClass().getDeclaredField(fields[i].getName());
                 RandomAnnotation randomAnnotation = field.getAnnotation(RandomAnnotation.class);
                 if (randomAnnotation != null) {
-                    double num  = rand.nextInt(randomAnnotation.max()) + randomAnnotation.min();
+                    double num = rand.nextInt(randomAnnotation.max()) + randomAnnotation.min();
                     if (randomAnnotation.needFloat()) {
-                        num  = num / Math.pow(10, randomAnnotation.floatNumber());
+                        num = num / Math.pow(10, randomAnnotation.floatNumber());
                     }
                     field.setAccessible(true);
-                    if("class java.lang.Integer".equals(field.getGenericType().toString())) {
-                        field.set(populationEntity, (int)num);
-                    } else if("class java.lang.Float".equals(field.getGenericType().toString())) {
-                        field.set(populationEntity, (float)num);
-                    } else if("class java.lang.Long".equals(field.getGenericType().toString())) {
-                        field.set(populationEntity, (long)num);
+                    if ("class java.lang.Integer".equals(field.getGenericType().toString())) {
+                        field.set(populationEntity, (int) num);
+                    } else if ("class java.lang.Float".equals(field.getGenericType().toString())) {
+                        field.set(populationEntity, (float) num);
+                    } else if ("class java.lang.Long".equals(field.getGenericType().toString())) {
+                        field.set(populationEntity, (long) num);
                     } else {
                         field.set(populationEntity, num);
                     }
@@ -100,12 +100,12 @@ public class PopulationBusiness {
             populationEntity2 = new PopulationEntity();
             for (int j = 0; j < field.length; j++) {
                 String name = field[j].getName();
-                name = name.substring(0,1).toUpperCase()+name.substring(1);
+                name = name.substring(0, 1).toUpperCase() + name.substring(1);
                 String type = field[j].getGenericType().toString();
                 RandomAnnotation randomAnnotation = field[j].getAnnotation(RandomAnnotation.class);
                 if (randomAnnotation != null) {
                     Method m = populationEntity.getClass().getMethod("get" + name);
-                    field[j].set(populationEntity2,  m.invoke(populationEntity));
+                    field[j].set(populationEntity2, m.invoke(populationEntity));
                 }
             }
         }

@@ -112,7 +112,7 @@ public class AreaServiceImpl implements AreaService {
 
     public AreaPopulationDetailsEntity areaPopulationDetails() {
 //        if (Objects.isNull(populationMap)) {
-            initPopulationMap();
+        initPopulationMap();
 //        }
         AreaPopulationDetailsEntity areaPopulationDetailsEntity = new AreaPopulationDetailsEntity();
         areaPopulationDetailsEntity.setArea(AREA);

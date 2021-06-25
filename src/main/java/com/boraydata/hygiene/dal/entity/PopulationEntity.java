@@ -28,25 +28,25 @@ public class PopulationEntity {
      * 死亡率
      */
     @RandomAnnotation(max = 1000, needFloat = true, floatNumber = 2)
-    private  Float mortality;
+    private Float mortality;
 
     /**
      * 死亡人数
      */
     @RandomAnnotation(max = 1000)
-    private  Integer mortalityNumber;
+    private Integer mortalityNumber;
 
     /**
      * 人口迁移指数
      */
     @RandomAnnotation(max = 1000, needFloat = true, floatNumber = 2)
-    private  Float migrationIndex;
+    private Float migrationIndex;
 
     /**
      * 人口稠密度
      */
     @RandomAnnotation(max = 1000, needFloat = true, floatNumber = 2)
-    private  Float populationDensity;
+    private Float populationDensity;
 
     /**
      * 疫情扩散曲线

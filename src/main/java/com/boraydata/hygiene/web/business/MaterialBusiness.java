@@ -23,10 +23,10 @@ public class MaterialBusiness {
 
     @Transactional(rollbackFor = Exception.class)
     public List<MaterialEntity> listMaterialInfo(MaterialRequest materialRequest) throws BusinessException {
-        if(Objects.isNull(materialRequest.getSize())) {
+        if (Objects.isNull(materialRequest.getSize())) {
             materialRequest.setSize(7);
         }
-        if(Objects.isNull(materialRequest.getDemoFloat())) {
+        if (Objects.isNull(materialRequest.getDemoFloat())) {
             materialRequest.setDemoFloat(3);
         }
         List<MaterialEntity> materialEntityList = new ArrayList<>();
@@ -53,23 +53,23 @@ public class MaterialBusiness {
         Random rand = new Random();
         List<MaterialEntity> materialEntityList = new ArrayList<>();
         Field[] fields = MaterialEntity.class.getDeclaredFields();
-        for(int j = 0; j < size; j++) {
+        for (int j = 0; j < size; j++) {
             MaterialEntity materialEntity = new MaterialEntity();
             for (int i = 0; i < fields.length; i++) {
                 Field field = materialEntity.getClass().getDeclaredField(fields[i].getName());
                 RandomAnnotation randomAnnotation = field.getAnnotation(RandomAnnotation.class);
                 if (randomAnnotation != null) {
-                    double num  = rand.nextInt(randomAnnotation.max()) + randomAnnotation.min();
+                    double num = rand.nextInt(randomAnnotation.max()) + randomAnnotation.min();
                     if (randomAnnotation.needFloat()) {
-                        num  = num / Math.pow(10, randomAnnotation.floatNumber());
+                        num = num / Math.pow(10, randomAnnotation.floatNumber());
                     }
                     field.setAccessible(true);
-                    if("class java.lang.Integer".equals(field.getGenericType().toString())) {
-                        field.set(materialEntity, (int)num);
-                    } else if("class java.lang.Float".equals(field.getGenericType().toString())) {
-                        field.set(materialEntity, (float)num);
-                    } else if("class java.lang.Long".equals(field.getGenericType().toString())) {
-                        field.set(materialEntity, (long)num);
+                    if ("class java.lang.Integer".equals(field.getGenericType().toString())) {
+                        field.set(materialEntity, (int) num);
+                    } else if ("class java.lang.Float".equals(field.getGenericType().toString())) {
+                        field.set(materialEntity, (float) num);
+                    } else if ("class java.lang.Long".equals(field.getGenericType().toString())) {
+                        field.set(materialEntity, (long) num);
                     } else {
                         field.set(materialEntity, num);
                     }

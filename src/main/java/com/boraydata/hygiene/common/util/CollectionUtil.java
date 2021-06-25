@@ -13,7 +13,7 @@ public class CollectionUtil {
         return false;
     }
 
-    public static<T> List<T> sublistLoop(List<T> list, int index, int size) {
+    public static <T> List<T> sublistLoop(List<T> list, int index, int size) {
         if (index > list.size()) {
             index = index % list.size();
         }

@@ -49,9 +49,9 @@ public class SchoolServiceImpl implements SchoolService {
             schoolInfoEntity.setStudentNumber(0);
             schoolInfoEntity.setTeacherNumber(0);
             schoolInfoEntity.setSecurityNumber(0);
-        } else if (hour == 7){
+        } else if (hour == 7) {
             schoolInfoEntity.setStudentNumber(8000 * minute / 60);
-            schoolInfoEntity.setTeacherNumber(500 *  minute / 60);
+            schoolInfoEntity.setTeacherNumber(500 * minute / 60);
             schoolInfoEntity.setSecurityNumber(30 * minute / 60);
         } else {
             Random random = new Random();

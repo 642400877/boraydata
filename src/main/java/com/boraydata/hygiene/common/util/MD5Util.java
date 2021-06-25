@@ -14,7 +14,7 @@ public class MD5Util {
         Random random = new Random();
         MD5CommonEntity md5CommonEntity = new MD5CommonEntity();
         String salt = "";
-        for (int i = 0; i < random.nextInt(3) + 3; i ++) {
+        for (int i = 0; i < random.nextInt(3) + 3; i++) {
             salt += MD5Util.SALT_POOL.charAt(random.nextInt(MD5Util.SALT_POOL.length()));
         }
         md5CommonEntity.setSalt(salt);

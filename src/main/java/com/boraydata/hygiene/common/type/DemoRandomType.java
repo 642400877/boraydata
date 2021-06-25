@@ -17,7 +17,7 @@ public enum DemoRandomType {
     POPULATION_DENSITY("populationDensity", "population", "人口稠密度", 0, 1000, true, 2),
     ECONOMICS_GDP("gdp", "economics", "国民生产总值", 100000000, Integer.MAX_VALUE, true, 2),
     ECONOMICS_CPI("cpi", "economics", "物价指数", 0, 1000, true, 2),
-    ECONOMICS_SOCIAL_FIXED_ASSETS("socialFixedAssets", "economics", "社会固定资产", 10000,  Integer.MAX_VALUE, true, 2),
+    ECONOMICS_SOCIAL_FIXED_ASSETS("socialFixedAssets", "economics", "社会固定资产", 10000, Integer.MAX_VALUE, true, 2),
     ECONOMICS_REVENUE("revenue", "economics", "财政收入", 1000000, Integer.MAX_VALUE, true, 2),
     ECONOMICS_BUDGET("budget", "economics", "财政预算", 1000000, Integer.MAX_VALUE, true, 2),
     ECONOMICS_SPEED_INCREASE("speedIncrease", "economics", "增速", 0, 1000, true, 2),
@@ -61,7 +61,7 @@ public enum DemoRandomType {
             if (demoRandomTypes[i].type.equals(type)) {
                 DemoRandomTypeClass demoRandomTypeClass = new DemoRandomTypeClass();
                 demoRandomTypeClass.setMax(demoRandomTypes[i].max);
-                demoRandomTypeMap.put(demoRandomTypes[i].code,demoRandomTypeClass);
+                demoRandomTypeMap.put(demoRandomTypes[i].code, demoRandomTypeClass);
             }
         }
         return demoRandomTypeMap;

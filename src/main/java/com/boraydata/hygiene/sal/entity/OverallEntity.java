@@ -35,12 +35,12 @@ public class OverallEntity {
         private Integer confirmedCount;
 
         /**
-         * 	疑似感染人数（较昨日增加数量）
+         * 疑似感染人数（较昨日增加数量）
          */
         private Integer suspectedCount;
 
         /**
-         * 	治愈人数（较昨日增加数量）
+         * 治愈人数（较昨日增加数量）
          */
         private Integer curedCount;
 
@@ -50,12 +50,12 @@ public class OverallEntity {
         private Integer deadCount;
 
         /**
-         * 	重症病例人数（较昨日增加数量）
+         * 重症病例人数（较昨日增加数量）
          */
         private Integer seriousCount;
 
         /**
-         * 	数据最后变动时间
+         * 数据最后变动时间
          */
         private Long updateTime;
 
